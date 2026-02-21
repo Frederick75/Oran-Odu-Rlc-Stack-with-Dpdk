@@ -10,9 +10,9 @@ namespace odu {
 
 bool DpdkPort::init(const PortConfig& cfg, rte_mempool* pool) {
   cfg_ = cfg;
-
   rte_eth_conf port_conf{};
-  port_conf.rxmode.max_rx_pkt_len = RTE_ETHER_MAX_LEN;
+  port_conf.rxmode.mq_mode = RTE_ETH_MQ_RX_NONE;
+  port_conf.txmode.mq_mode = RTE_ETH_MQ_TX_NONE;
 
   int ret = rte_eth_dev_configure(cfg_.port_id, cfg_.rxq + 1, cfg_.txq + 1, &port_conf);
   if (ret < 0) { Log::error("rte_eth_dev_configure failed"); return false; }

@@ -3,7 +3,8 @@
 
 extern "C" {
 #include <rte_mbuf.h>
-#include <rte_socket.h>
+#include <rte_lcore.h>
+#include <rte_eal.h>
 }
 
 namespace odu {

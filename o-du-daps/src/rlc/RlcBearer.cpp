@@ -6,7 +6,7 @@ RlcEntity& RlcBearer::get_or_create(UeId ue, DrbId drb, Leg leg) {
   BearerKey k{ue, drb, leg};
   auto it = ents_.find(k);
   if (it == ents_.end()) {
-    it = ents_.emplace(k, RlcEntity{}).first;
+    it = ents_.try_emplace(k).first;
   }
   return it->second;
 }
